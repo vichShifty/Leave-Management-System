@@ -1,0 +1,31 @@
+
+{%if session['desig'] == 'HOD'%}
+	{% include 'hodheader.html' %}
+{%elif session['desig'] == 'Teacher'%}
+	{% include 'teacherheader.html' %}
+{%elif session['desig'] == 'Student'%}
+	{% include 'studentheader.html' %}
+{%elif session['desig'] == 'Staff'%}
+	{% include 'staffheader.html' %}
+{%elif session['desig'] == 'Principal'%}
+	{% include 'principalheader.html'%}
+{%else%}
+	{% include 'adminheader.html' %}
+{%endif%}
+
+<center>
+	<h1> Send Message </h1><br>
+
+	<table><form method="POST">
+		<tr>
+			<th> Message : </th>
+			<td> <textarea name='message' class="inpfld"></textarea></td>
+		</tr>
+		<tr>
+			<td colspan="2" align="center"> <input type="submit" name="sendMessage" value="Send Message" class="subbutn"></td>
+		</tr>
+	</form></table>
+
+</center>
+
+{% include 'footer.html' %}

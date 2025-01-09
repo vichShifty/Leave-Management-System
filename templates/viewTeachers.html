@@ -1,0 +1,30 @@
+
+{% include 'adminheader.html' %}
+
+<center>
+	<h1> TEACHER DETAILS </h1><br>
+	<form><table cellpadding="2" border="2">
+		<tr align="center">
+			<th>Teacher ID</th>
+			<th>Department ID</th>
+			<th>First Name</th>
+			<th>Last Name</th>
+			<th>Address</th>
+			<th>Phone Number</th>
+			<th>Email</th>
+		</tr>
+		{%for i in data['teachers']%}
+		<tr>
+			<td> {{i['teachersID']}} </td>
+			<td> {{i['departmentID']}} </td>
+			<td> {{i['firstName']}} </td>
+			<td> {{i['lastName']}} </td>
+			<td> {{i['address']}} </td>
+			<td> {{i['phoneNumber']}} </td>
+			<td> {{i['email']}} </td>
+		</tr>
+		{%endfor%}
+	</table></form><br>
+</center>
+
+{% include 'footer.html' %}

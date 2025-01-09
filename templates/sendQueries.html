@@ -1,0 +1,55 @@
+
+{%if session['desig'] == 'HOD'%}
+	{% include 'hodheader.html' %}
+{%elif session['desig'] == 'Teacher'%}
+	{% include 'teacherheader.html' %}
+{%elif session['desig'] == 'Student'%}
+	{% include 'studentheader.html' %}
+{%elif session['desig'] == 'Staff'%}
+	{% include 'staffheader.html' %}
+{%elif session['desig'] == 'Principal'%}
+	{% include 'principalheader.html'%}
+{%else%}
+	{% include 'adminheader.html' %}
+{%endif%}
+
+<center>
+	<h1> Send Query </h1><br>
+
+	<table><form method="post">
+		<tr>
+			<th> Enter Query : </th>
+			<td> <textarea name='query' class="inpfld"></textarea></td>
+		</tr>
+		<tr>
+			<th> Send Query to : </th>
+			<td><select name="reciever" class="inpfld">
+				{%for i in data['teachers']%}
+				<option> {{i['loginID']}} {{i['firstName']}}</option>
+				{%endfor%}
+			</select></td>
+		</tr>
+		<tr>
+			<td colspan="2" align="center"> <input type="submit" value="Send Query" name="sendQuery" class="subbutn"></td>
+		</tr>
+	</form></table>
+	<hr>
+
+	<table cellpadding="2" border="2"><form>
+		<tr>
+			<th> Date </th>
+			<th> Query </th>
+			<th> Reply </th>
+		</tr>
+		{%for i in data['query']%}
+		<tr>
+			<td> {{i['date']}} </td>
+			<td> {{i['query']}} </td>
+			<td> {{i['reply']}} </td>
+		</tr>
+		{%endfor%}
+	</form></table>
+
+</center><br>
+
+{% include 'footer.html' %}

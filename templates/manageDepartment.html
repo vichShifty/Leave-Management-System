@@ -1,0 +1,43 @@
+
+{% include 'adminheader.html' %}
+
+<center>
+	<h1> Department Detials </h1>
+	<form><table border="2" cellpadding="2">
+		<tr align="center">
+			<th> Department ID </th>
+			<th> Department </th>
+		</tr>
+		{%for i in data['dept']%}
+		<tr align="center">
+			<td> {{i['departmentID']}} </td>
+			<td> {{i['department']}} </td>
+			<td> <a href="?action=delete&deptId={{i['departmentID']}}">Delete</a> </td>
+			<td> <a href="?action=update&deptId={{i['departmentID']}}">Update</a> </td>
+		</tr>
+		{%endfor%}
+	</table></form>
+
+	{%if data['upd']%}
+	<h3> Update Department </h3>
+	<form method="POST"><table>
+		<tr>
+			<th>Department : </th>
+			<td> <input type="text" name="deptName" value="{{data['upd'][0]['department']}}" required=""></td>
+			<td> <input type="submit" name="updDepartment" value="Update Department"></td>
+		</tr>
+	</table></form>
+	{%else%}
+	<br>
+	<h3> Add Department </h3>
+	<form method="POST"><table>
+		<tr>
+			<th>Department : </th>
+			<td> <input type="text" name="deptName" required="" class="inpfld"></td>
+			<td> <input type="submit" name="addDepartment" value="Add Department" class="subbutn"></td>
+		</tr>
+	</table></form>
+	{%endif%}
+</center>
+
+{% include 'footer.html' %}

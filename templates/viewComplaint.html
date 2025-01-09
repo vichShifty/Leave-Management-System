@@ -1,0 +1,26 @@
+
+{% include 'adminheader.html' %}
+
+<center>
+	<h1> View Complaints </h1><br>
+
+	<table cellpadding="2" border="2"><form>
+			<tr>
+				<th> Complaint By </th>
+				<th> Complaint </th>
+				<th> Reply </th>
+				<th> Date </th>
+			</tr>
+			{%for i in data['complaint']%}
+			<tr>
+				<td>{{i['username']}}</td>
+				<td>{{i['complaint']}}</td>
+				<td>{{i['reply']}}</td>
+				<td>{{i['date']}}</td>
+				<td><a href="complaintResponse?complaintId={{i['complaintID']}}">Respond</a></td>
+			</tr>
+			{%endfor%}
+	</form></table>
+</center><br>
+
+{% include 'footer.html' %}

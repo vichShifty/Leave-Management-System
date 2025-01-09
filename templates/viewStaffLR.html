@@ -1,0 +1,39 @@
+
+{%if session['desig'] == 'HOD'%}
+	{% include 'hodheader.html' %}
+{%elif session['desig'] == 'Teacher'%}
+	{% include 'teacherheader.html' %}
+{%elif session['desig'] == 'Student'%}
+	{% include 'studentheader.html' %}
+{%elif session['desig'] == 'Staff'%}
+	{% include 'staffheader.html' %}
+{%elif session['desig'] == 'Principal'%}
+	{% include 'principalheader.html'%}
+{%else%}
+	{% include 'adminheader.html' %}
+{%endif%}
+
+<center>
+	<h1> Staff Leave Requests </h1><br>
+
+	<table cellpadding="2" border="2"><form>
+		<tr>
+			<th> Requested By </th>
+			<th> Date </th>
+			<th> Type </th>
+			<th> Status </th>
+		</tr>
+		{%for i in data['staffLR']%}
+		<tr>
+			<td> {{i['firstName']}} {{i['lastName']}} </td>
+			<td> {{i['date']}} </td>
+			<td> {{i['type']}} </td>
+			<td style="color: {% if i['status'] == 'Accepted' %} green {% elif i['status'] == 'Rejected' %} red {% endif %};"> {{i['status']}} </td>
+			<td> <a href="?action=accept&leaveReqId={{i['leaveRequestID']}}" class="accept">Accept</a> </td>
+			<td> <a href="?action=reject&leaveReqId={{i['leaveRequestID']}}" class="reject">Reject</a> </td>
+		</tr>
+		{%endfor%}
+	</form></table>
+</center><br>
+
+{% include 'footer.html' %}

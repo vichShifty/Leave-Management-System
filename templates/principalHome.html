@@ -1,0 +1,35 @@
+
+{% include 'principalheader.html' %}
+
+<center><br>
+	 <div class="leave_box">
+        <h3>Faculty on Leave:</h3>
+        <table cellpadding="2" cellspacing="2">
+        	<tr>
+        		<th> Username </th>
+        		<th> Post </th>
+        		<th> Type </th>
+        	</tr>
+        	{%for i in data['lr']%}
+        	<tr>
+        		<td> {{i['username']}} </td>
+        		<td> {{i['requestedBy']}} </td>
+        		<td> {{i['type']}} </td>
+        	</tr>
+        	{%endfor%}
+        </table>
+    </div>
+
+	<div class="links">
+	<a href="sendLR_principal" class="funcLink">Send Leave Request</a><br>
+	<a href="viewReqStatus_principal" class="funcLink">View Leave Status</a><br>
+	<a href="manageHOD_principal" class="funcLink">Manage HOD</a><br>
+	<a href="manageTeachers_principal" class="funcLink">Manage Teachers</a><br>
+	<a href="viewStudents_principal" class="funcLink">View Students</a><br>
+	<a href="viewStaffLR_principal" class="funcLink">View Staff Leave Request</a><br>
+	<a href="addNotification_principal" class="funcLink">Add Notification</a><br>
+	<a href="sendMessage_principal" class="funcLink">Send Message to Admin</a><br>	
+	</div>
+</center><br>	
+
+{% include 'footer.html' %}

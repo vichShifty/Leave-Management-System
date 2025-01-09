@@ -1,0 +1,38 @@
+
+{%if session['desig'] == 'HOD'%}
+	{% include 'hodheader.html' %}
+{%elif session['desig'] == 'Teacher'%}
+	{% include 'teacherheader.html' %}
+{%elif session['desig'] == 'Student'%}
+	{% include 'studentheader.html' %}
+{%elif session['desig'] == 'Staff'%}
+	{% include 'staffheader.html' %}
+{%elif session['desig'] == 'Principal'%}
+	{% include 'principalheader.html'%}
+{%else%}
+	{% include 'adminheader.html' %}
+{%endif%}
+
+
+<center>
+	<h1>View Notifications</h1><br>
+	
+	<table cellpadding="2" border="2"><center>
+		<tr>
+			<th>Notification </th>
+			<th>Date</th>
+			<th>Time</th>
+			<th>From</th>
+		</tr>
+		{%for i in data['notification']%}
+		<tr>
+			<td> {{i['notification']}} </td>
+			<td> {{i['date']}} </td>
+			<td> {{i['time']}} </td>
+			<td> {{i['sender']}} </td>
+		</tr>
+		{%endfor%}
+	</center></table>
+</center>
+
+{% include 'footer.html' %}

@@ -1,0 +1,50 @@
+
+{%if session['desig'] == 'HOD'%}
+	{% include 'hodheader.html' %}
+{%elif session['desig'] == 'Teacher'%}
+	{% include 'teacherheader.html' %}
+{%elif session['desig'] == 'Student'%}
+	{% include 'studentheader.html' %}
+{%elif session['desig'] == 'Staff'%}
+	{% include 'staffheader.html' %}
+{%elif session['desig'] == 'Principal'%}
+	{% include 'principalheader.html'%}
+{%else%}
+	{% include 'adminheader.html' %}
+{%endif%}
+
+<center>
+	<h1> Send Leave Request </h1><br>
+	<table><form method="POST">
+		<tr>
+			<td colspan="2" align="center"><font color="blue"> Leaves remaining : 
+			{%for i in data['lc']%} 
+				{{i['leaveCount']}} </font>
+			</td>
+		</tr>
+		{%if i['leaveCount'] != 0 %}
+		<tr>
+			<th> Date for Leave : </th>
+			<td> <input type="date" name="dateOfLeave" class="inpfld"></td>
+		</tr>
+		<tr>
+			<th> Leave Type : </th>
+			<td> <select name="leaveType" class="inpfld">
+				<option> Full Day </option>
+				<option> Half Day </option>
+				<option> Duty Leave </option>
+			</select> </td>
+		</tr>
+		<tr>
+			<td colspan="2" align="center"> <input type="submit" name="sendReq" value="Send Leave Request" class="subbutn">
+		</tr>
+		{%else%}
+		<tr>
+			<th> NO LEAVES LEFT. PLEASE CONTACT PRINCIPAL FOR FURTHER INFORMATION </th>
+		</tr>
+		{%endif%}
+		{%endfor%}
+	</form></table>
+</center><br>
+
+{% include 'footer.html' %}

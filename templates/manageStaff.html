@@ -1,0 +1,98 @@
+
+{% include 'adminheader.html'%}}
+
+<center>
+	<h1> STAFF DETAILS </h1><br>
+
+	<form><table cellpadding="2" border="2">
+		<tr align="center">
+			<th>Staff ID</th>
+			<th>First Name</th>
+			<th>Last Name</th>
+			<th>Address</th>
+			<th>Phone Number</th>
+			<th>Email</th>
+		</tr>
+		{%for i in data['staff']%}
+		<tr>
+			<td> {{i['staffID']}} </td>
+			<td> {{i['firstName']}} </td>
+			<td> {{i['lastName']}} </td>
+			<td> {{i['address']}} </td>
+			<td> {{i['phoneNumber']}} </td>
+			<td> {{i['email']}} </td>
+			<td> <a href="?action=delete&staffId={{i['staffID']}}">Delete</a> </td>
+			<td> <a href="?action=update&staffId={{i['staffID']}}">Update</a> </td>
+		</tr>
+		{%endfor%}
+	</table></form><br>
+
+	{%if data['upd']%} 
+
+	<h3>Update Staff Details</h3>
+	<table><form method='POST'>
+		<tr>
+			<th>First Name : </th>
+			<td> <input type="text" name="firstName" value="{{data['upd'][0]['firstName']}}" required="" class="inpfld"> </td>
+		</tr>
+		<tr>
+			<th>Last Name : </th>
+			<td> <input type="text" name="lastName"value="{{data['upd'][0]['lastName']}}" required="" class="inpfld"> </td>
+		</tr>
+		<tr>
+			<th>Address : </th>
+			<td> <textarea name="address" required="" class="inpfld">{{data['upd'][0]['firstName']}}</textarea> </td>
+		</tr>
+		<tr>
+			<th>Phone Number : </th>
+			<td> <input type="text" name="phoneNumber" maxlength="10" value="{{data['upd'][0]['phoneNumber']}}" required="" class="inpfld"> </td>
+		</tr>
+		<tr>
+			<th>Email : </th>
+			<td> <input type="email" name="email" value="{{data['upd'][0]['email']}}" required="" class="inpfld"> </td>
+		</tr>
+		<tr>
+			<td colspan="2" align="center"> <input type="submit" name="updStaff" value="Update Staff" class="subbutn"> </td>
+		</tr>
+	</form></table>
+
+	{%else%}
+	<h3>Add Staff Details</h3>
+	<table><form method='POST'>
+		<tr>
+			<th>First Name : </th>
+			<td> <input type="text" name="firstName" required="" class="inpfld"> </td>
+		</tr>
+		<tr>
+			<th>Last Name : </th>
+			<td> <input type="text" name="lastName" required="" class="inpfld"> </td>
+		</tr>
+		<tr>
+			<th>Address : </th>
+			<td> <textarea name="address" required="" class="inpfld"></textarea> </td>
+		</tr>
+		<tr>
+			<th>Phone Number : </th>
+			<td> <input type="text" name="phoneNumber" maxlength="10" required="" class="inpfld"> </td>
+		</tr>
+		<tr>
+			<th>Email : </th>
+			<td> <input type="email" name="email" required="" class="inpfld"> </td>
+		</tr>
+		<tr>
+			<th>Username : </th>
+			<td> <input type="text" name="uname" required="" class="inpfld"> </td>
+		</tr>
+		<tr>
+			<th>Password : </th>
+			<td> <input type="password" name="pword" required="" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" class="inpfld"></td>
+		</tr>
+		<tr>
+			<td colspan="2" align="center"> <input type="submit" name="addStaff" value="Add Staff" class="subbutn"> </td>
+		</tr>
+	</form></table>
+
+	{%endif%}
+</center>
+
+{% include 'footer.html' %}

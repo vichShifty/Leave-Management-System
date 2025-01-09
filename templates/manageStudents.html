@@ -1,0 +1,110 @@
+
+{%if session['desig'] == 'HOD'%}
+	{% include 'hodheader.html' %}
+{%elif session['desig'] == 'Teacher'%}
+	{% include 'teacherheader.html' %}
+{%elif session['desig'] == 'Student'%}
+	{% include 'studentheader.html' %}
+{%elif session['desig'] == 'Staff'%}
+	{% include 'staffheader.html' %}
+{%elif session['desig'] == 'Principal'%}
+	{% include 'principalheader.html'%}
+{%else%}
+	{% include 'adminheader.html' %}
+{%endif%}
+
+<center>
+	<h1> STUDENT DETAILS </h1><br>
+	<form><table cellpadding="2" border="2">
+		<tr align="center">
+			<th>Student ID</th>
+			<th>First Name</th>
+			<th>Last Name</th>
+			<th>Address</th>
+			<th>Phone Number</th>
+			<th>Email</th>
+		</tr>
+		{%for i in data['students']%}
+		<tr>
+			<td> {{i['studentID']}} </td>
+			<td> {{i['firstName']}} </td>
+			<td> {{i['lastName']}} </td>
+			<td> {{i['address']}} </td>
+			<td> {{i['phoneNumber']}} </td>
+			<td> {{i['email']}} </td>
+			<td> <a href="?action=delete&studentId={{i['studentID']}}">Delete</a> </td>
+			<td> <a href="?action=update&studentId={{i['studentID']}}">Update</a> </td>
+		</tr>
+		{%endfor%}
+	</table></form>
+
+	{%if data['upd']%} 
+
+	<h3>Update Student Details</h3>
+	<table><form method='POST'>
+		<tr>
+			<th>First Name : </th>
+			<td> <input type="text" name="firstName" value="{{data['upd'][0]['firstName']}}" required="" class="inpfld"> </td>
+		</tr>
+		<tr>
+			<th>Last Name : </th>
+			<td> <input type="text" name="lastName"value="{{data['upd'][0]['lastName']}}" required="" class="inpfld"> </td>
+		</tr>
+		<tr>
+			<th>Address : </th>
+			<td> <textarea name="address" required="" class="inpfld">{{data['upd'][0]['address']}}</textarea> </td>
+		</tr>
+		<tr>
+			<th>Phone Number : </th>
+			<td> <input type="text" name="phoneNumber" maxlength="10" value="{{data['upd'][0]['phoneNumber']}}" required="" class="inpfld"> </td>
+		</tr>
+		<tr>
+			<th>Email : </th>
+			<td> <input type="email" name="email" value="{{data['upd'][0]['email']}}" required="" class="inpfld"> </td>
+		</tr>
+		<tr>
+			<td colspan="2" align="center"> <input type="submit" name="updStudent" value="Update Student" class="subbutn"> </td>
+		</tr>
+	</form></table>
+
+	{%else%}
+	<h3>Add Student Details</h3>
+	<table><form method='POST'>
+		<tr>
+			<th>First Name : </th>
+			<td> <input type="text" name="firstName" required="" class="inpfld"> </td>
+		</tr>
+		<tr>
+			<th>Last Name : </th>
+			<td> <input type="text" name="lastName" required="" class="inpfld"> </td>
+		</tr>
+		<tr>
+			<th>Address : </th>
+			<td> <textarea name="address" required="" class="inpfld"></textarea> </td>
+		</tr>
+		<tr>
+			<th>Phone Number : </th>
+			<td> <input type="text" name="phoneNumber" maxlength="10" required="" class="inpfld"> </td>
+		</tr>
+		<tr>
+			<th>Email : </th>
+			<td> <input type="email" name="email" required="" class="inpfld"> </td>
+		</tr>
+		<tr>
+			<th>Username : </th>
+			<td> <input type="text" name="uname" required="" class="inpfld"> </td>
+		</tr>
+		<tr>
+			<th>Password : </th>
+			<td> <input type="password" name="pword" required="" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" class="inpfld"></td>
+		</tr>
+		<tr>
+			<td colspan="2" align="center"> <input type="submit" name="addStudent" value="Add Student" class="subbutn"> </td>
+		</tr>
+	</form></table>
+
+	{%endif%}
+
+</center>
+
+{% include 'footer.html' %}

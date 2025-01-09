@@ -1,0 +1,43 @@
+
+{%if session['desig'] == 'HOD'%}
+	{% include 'hodheader.html' %}
+{%elif session['desig'] == 'Teacher'%}
+	{% include 'teacherheader.html' %}
+{%elif session['desig'] == 'Student'%}
+	{% include 'studentheader.html' %}
+{%elif session['desig'] == 'Staff'%}
+	{% include 'staffheader.html' %}
+{%elif session['desig'] == 'Principal'%}
+	{% include 'principalheader.html'%}
+{%else%}
+	{% include 'adminheader.html' %}
+{%endif%}
+
+<center>
+	<h1> STUDENT DETAILS </h1><br>
+
+	<form><table cellpadding="2" border="2">
+		<tr align="center">
+			<th>Student ID</th>
+			<th>Department ID</th>
+			<th>First Name</th>
+			<th>Last Name</th>
+			<th>Address</th>
+			<th>Phone Number</th>
+			<th>Email</th>
+		</tr>
+		{%for i in data['student']%}
+		<tr>
+			<td> {{i['studentID']}} </td>
+			<td> {{i['departmentID']}} </td>
+			<td> {{i['firstName']}} </td>
+			<td> {{i['lastName']}} </td>
+			<td> {{i['address']}} </td>
+			<td> {{i['phoneNumber']}} </td>
+			<td> {{i['email']}} </td>
+		</tr>
+		{%endfor%}
+	</table></form>
+</center>
+
+{% include 'footer.html' %}
